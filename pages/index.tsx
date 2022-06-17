@@ -1,19 +1,26 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
+import { BASE_URL } from "../util/utils";
 
 const Home: NextPage = () => {
   const [champions, setChampions] = useState<string[]>([]);
 
   useEffect(() => {
     (async () => {
+      const patchVersion = (
+        await (
+          await fetch(`${BASE_URL}/api/versions.json`, {
+            method: "GET",
+          })
+        ).json()
+      ).data;
       const championsFromAPI = (
         await (
           await fetch(
-            "http://ddragon.leagueoflegends.com/cdn/12.10.1/data/en_US/champion.json",
+            `${BASE_URL}/cdn/${patchVersion[0]}/data/en_US/champion.json`,
             {
               method: "GET",
-              headers: {},
             }
           )
         ).json()
