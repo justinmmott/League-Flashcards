@@ -8,13 +8,11 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     (async () => {
-      const patchVersion = (
-        await (
-          await fetch(`${BASE_URL}/api/versions.json`, {
-            method: "GET",
-          })
-        ).json()
-      ).data;
+      const patchVersion = await (
+        await fetch(`${BASE_URL}/api/versions.json`, {
+          method: "GET",
+        })
+      ).json();
       const championsFromAPI = (
         await (
           await fetch(
