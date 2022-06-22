@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
 import { BASE_URL } from "../util/utils";
 
 const Home: NextPage = () => {
@@ -30,11 +30,13 @@ const Home: NextPage = () => {
   return champions.length > 0 ? (
     <div>
       {champions.map((x) => (
-        <div key={x}>{x}</div>
+        <Link href={`/champion/${x}`} key={x}>
+          {x}
+        </Link>
       ))}
     </div>
   ) : (
-    <div className={styles.container}>Hello World! asdfsa</div>
+    <div>Hello World! asdfsa</div>
   );
 };
 
